@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "../../css/Home.module.css";
+import Feed from "./Feed";
 import Box from "@mui/material/Box";
 import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
@@ -44,12 +45,7 @@ function Home() {
             </DemoContainer>
           </LocalizationProvider>
         </div>
-        <div className={styles.feed_ctn}>
-          <div className={styles.feed_card}>Feed 1</div>
-          <div className={styles.feed_card}>Feed 2</div>
-          <div className={styles.feed_card}>Feed 3</div>
-          <div className={styles.feed_card}>Feed 4</div>
-        </div>
+        <Feed />
       </div>
     </div>
   );

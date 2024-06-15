@@ -57,15 +57,3 @@
   align-items: center;
   background-color: orange;
 }
-
-.feed_ctn {
-  display: grid;
-  gap: 1rem;
-  overflow-y: auto;
-  height: 56vh;
-}
-
-.feed_card {
-  height: 15vh;
-  background-color: red;
-}
