@@ -7,8 +7,13 @@ import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { FiltersProps } from "../../definitions/Feed-definitions";
 
-function Filters() {
+function Filters({ searchFilter, setSearchFilter }: FiltersProps) {
+  function manageSearchOnChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setSearchFilter(e.target.value);
+  }
+
   return (
     <div className={styles.filters_ctn}>
       <Box sx={{ "& > :not(style)": { m: 1 } }}>
@@ -23,6 +28,8 @@ function Filters() {
             ),
           }}
           variant="standard"
+          value={searchFilter}
+          onChange={manageSearchOnChange}
         />
       </Box>
       <LocalizationProvider dateAdapter={AdapterDayjs}>

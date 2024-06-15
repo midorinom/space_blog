@@ -35,6 +35,7 @@
 }
 
 .feed_card_info_container {
+  flex-grow: 1;
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr;

@@ -19,6 +19,11 @@ export type FetchArticlesResponse = {
   results: Article[];
 };
 
+export type FiltersProps = {
+  searchFilter: string;
+  setSearchFilter: (searchFilters: string) => void;
+};
+
 export type FeedCardProps = {
   title: string;
   published_at: string;

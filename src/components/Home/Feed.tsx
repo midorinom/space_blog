@@ -10,7 +10,9 @@ import FeedCardSkeleton from "./FeedCardSkeleton";
 
 function Feed() {
   const [articles, setArticles] = useState<Article[]>([]);
-  const [isFetching, setIsFetching] = useState(false);
+  const [feedArticles, setFeedArticles] = useState<Article[]>([]);
+  const [isFetching, setIsFetching] = useState<boolean>(false);
+  const [searchFilter, setSearchFilter] = useState<string>("");
 
   useEffect(() => {
     async function fetchArticles() {
@@ -23,9 +25,8 @@ function Feed() {
 
         if (articles.length === 0) {
           setArticles(response.results);
+          setFeedArticles(response.results);
         }
-
-        console.log(response);
 
         setIsFetching(false);
       } catch (err) {
@@ -37,13 +38,24 @@ function Feed() {
     fetchArticles();
   }, []);
 
+  useEffect(() => {
+    if (articles.length > 0) {
+      const new_articles = articles.filter((article) => {
+        const title = article.title.toLowerCase();
+        return title.includes(searchFilter.toLowerCase());
+      });
+
+      setFeedArticles(new_articles);
+    }
+  }, [searchFilter]);
+
   return (
     <>
-      <Filters />
+      <Filters searchFilter={searchFilter} setSearchFilter={setSearchFilter} />
       <div className={styles.feed_ctn}>
         {!isFetching &&
-          articles.length > 0 &&
-          articles.map((article) => (
+          feedArticles.length > 0 &&
+          feedArticles.map((article) => (
             <FeedCard
               title={article.title}
               published_at={article.published_at}
