@@ -1,3 +1,12 @@
+.filters_ctn {
+  height: fit-content;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: orange;
+}
+
 .feed_ctn {
   display: grid;
   gap: 1rem;
@@ -6,6 +15,57 @@
 }
 
 .feed_card {
+  display: flex;
   height: 15vh;
   background-color: red;
+}
+
+.feed_card_image_container {
+  height: 100%;
+  min-width: 30%;
+  position: relative;
+  display: flex;
+}
+
+.feed_card_image {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  position: absolute;
+}
+
+.feed_card_info_container {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.feed_card_title_container {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  gap: 1rem;
+  grid-row: 1 / span 1;
+  grid-column: 1 / span 2;
+}
+
+.feed_card_title {
+  font-weight: bold;
+}
+
+.feed_card_date {
+  padding: 0.5rem;
+  grid-row: 1 / span 1;
+  grid-column: 3 / span 1;
+  justify-self: end;
+}
+
+.feed_card_comments {
+  padding: 0.5rem;
+  grid-row: 2 / span 1;
+  grid-column: 3 / span 1;
+  justify-self: end;
+  display: flex;
+  gap: 0.2rem;
+  align-items: center;
 }
