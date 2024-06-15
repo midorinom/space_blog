@@ -51,6 +51,7 @@
 
 .filters_ctn {
   height: fit-content;
+  margin-bottom: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
