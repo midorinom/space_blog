@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import styles from "../../css/Feed.module.css";
 import {
   Article,
+  DateFilterState,
   FetchArticlesResponse,
 } from "../../definitions/Feed-definitions";
 import Filters from "./Filters";
@@ -13,6 +14,10 @@ function Feed() {
   const [feedArticles, setFeedArticles] = useState<Article[]>([]);
   const [isFetching, setIsFetching] = useState<boolean>(false);
   const [searchFilter, setSearchFilter] = useState<string>("");
+  const [dateFilter, setDateFilter] = useState<DateFilterState>({
+    from: null,
+    to: null,
+  });
 
   useEffect(() => {
     async function fetchArticles() {
@@ -40,6 +45,8 @@ function Feed() {
 
   useEffect(() => {
     if (articles.length > 0) {
+      console.log(dateFilter);
+
       const new_articles = articles.filter((article) => {
         const title = article.title.toLowerCase();
         return title.includes(searchFilter.toLowerCase());
@@ -47,11 +54,16 @@ function Feed() {
 
       setFeedArticles(new_articles);
     }
-  }, [searchFilter]);
+  }, [searchFilter, dateFilter]);
 
   return (
     <>
-      <Filters searchFilter={searchFilter} setSearchFilter={setSearchFilter} />
+      <Filters
+        searchFilter={searchFilter}
+        setSearchFilter={setSearchFilter}
+        dateFilter={dateFilter}
+        setDateFilter={setDateFilter}
+      />
       <div className={styles.feed_ctn}>
         {!isFetching &&
           feedArticles.length > 0 &&

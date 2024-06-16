@@ -1,3 +1,5 @@
+import { Dayjs } from "dayjs";
+
 export type Article = {
   events: [];
   featured: boolean;
@@ -22,6 +24,8 @@ export type FetchArticlesResponse = {
 export type FiltersProps = {
   searchFilter: string;
   setSearchFilter: (searchFilters: string) => void;
+  dateFilter: DateFilterState;
+  setDateFilter: (dateFilters: DateFilterState) => void;
 };
 
 export type FeedCardProps = {
@@ -29,4 +33,9 @@ export type FeedCardProps = {
   published_at: string;
   news_site: string;
   image_url: string;
+};
+
+export type DateFilterState = {
+  from: Dayjs | null;
+  to: Dayjs | null;
 };
