@@ -71,16 +71,35 @@
 }
 
 .total_comments_ctn {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
   font-size: 1.5rem;
   font-weight: bold;
   margin-top: 1rem;
   padding-left: 0.5rem;
-  background-color: pink;
 }
 
 .comment_input_ctn {
   display: flex;
   flex-direction: column;
+  width: 90%;
+}
+
+.comment_input_helper_text {
+  color: red;
+}
+
+.comment_buttons_ctn {
+  align-self: flex-end;
+  display: flex;
+  gap: 1rem;
+}
+
+.post_comment_ctn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .skeleton_ctn {
