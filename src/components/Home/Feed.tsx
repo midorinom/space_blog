@@ -74,6 +74,7 @@ function Feed() {
           feedArticles.length > 0 &&
           feedArticles.map((article) => (
             <FeedCard
+              article_id={article.id}
               title={article.title}
               published_at={article.published_at}
               news_site={article.news_site}

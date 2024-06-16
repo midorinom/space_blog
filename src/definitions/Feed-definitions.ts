@@ -29,6 +29,7 @@ export type FiltersProps = {
 };
 
 export type FeedCardProps = {
+  article_id: number;
   title: string;
   published_at: string;
   news_site: string;

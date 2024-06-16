@@ -1,8 +1,10 @@
 import styles from "../../css/Feed.module.css";
+import { Link } from "react-router-dom";
 import { FeedCardProps } from "../../definitions/Feed-definitions";
 import CommentIcon from "@mui/icons-material/Comment";
 
 function FeedCard({
+  article_id,
   title,
   published_at,
   news_site,
@@ -12,12 +14,18 @@ function FeedCard({
 
   return (
     <div className={styles.feed_card}>
-      <div className={styles.feed_card_image_container}>
+      <Link to="/article-details" className={styles.feed_card_image_container}>
         <img src={image_url} alt={title} className={styles.feed_card_image} />
-      </div>
+      </Link>
       <div className={styles.feed_card_info_container}>
         <div className={styles.feed_card_title_container}>
-          <div className={styles.feed_card_title}>{title}</div>
+          <Link
+            to={`article-details/${article_id}`}
+            className={styles.feed_card_title}
+            style={{ color: "inherit", textDecoration: "inherit" }}
+          >
+            {title}
+          </Link>
           <div>{news_site}</div>
         </div>
         <div className={styles.feed_card_date}>
