@@ -4,10 +4,13 @@ import { Link } from "react-router-dom";
 import { Article } from "../../definitions/Feed-definitions";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArticleDetailsSkeleton from "./ArticleDetailsSkeleton";
+import { Box, TextField } from "@mui/material";
 
 function ArticleDetails() {
   const [article, setArticle] = useState<Article | null>(null);
   const [isFetching, setIsFetching] = useState<boolean>(false);
+  const [username, setUsername] = useState<string>("");
+  const [usernameError, setUsernameError] = useState<boolean>(false);
   const current_url = window.location.href;
   const articleId = current_url.split("/").pop();
 
@@ -64,8 +67,45 @@ function ArticleDetails() {
               </div>
             </div>
             <div className={styles.total_comments_ctn}>2 Comments</div>
-            <div>Username Input</div>
-            <div>Comment Input</div>
+            <div className={styles.comment_input_ctn}>
+              <Box
+                component="form"
+                sx={{
+                  "& > :not(style)": { m: 1, width: "25ch" },
+                }}
+                noValidate
+                autoComplete="off"
+              >
+                <TextField
+                  error={usernameError}
+                  id={
+                    usernameError
+                      ? "outlined-error-helper-text"
+                      : "outlined-basic"
+                  }
+                  label="Username"
+                  variant="outlined"
+                  helperText={usernameError ? "Invalid username" : ""}
+                />
+              </Box>
+              <Box
+                component="form"
+                sx={{
+                  "& .MuiTextField-root": { m: 1, width: "25ch" },
+                }}
+                noValidate
+                autoComplete="off"
+              >
+                <div>
+                  <TextField
+                    id="outlined-multiline-static"
+                    label="Comment"
+                    multiline
+                    rows={4}
+                  />
+                </div>
+              </Box>
+            </div>
             <div>Comment Buttons</div>
             <div>Comments</div>
           </div>
