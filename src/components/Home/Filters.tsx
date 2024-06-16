@@ -8,10 +8,6 @@ import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import {
-  PickerChangeHandlerContext,
-  DateValidationError,
-} from "@mui/x-date-pickers";
 import { Dayjs } from "dayjs";
 
 function Filters({
@@ -24,22 +20,18 @@ function Filters({
     setSearchFilter(e.target.value);
   }
 
-  function handleFromDateOnChange(
-    value: Dayjs | null,
-    context: PickerChangeHandlerContext<DateValidationError>
-  ) {
-    if (value) {
-      setDateFilter({ ...dateFilter, from: value });
+  function handleFromDateOnChange(value: Dayjs | null) {
+    if (!value) {
+      setDateFilter({ ...dateFilter, from: null });
     }
+    setDateFilter({ ...dateFilter, from: value });
   }
 
-  function handleToDateOnChange(
-    value: Dayjs | null,
-    context: PickerChangeHandlerContext<DateValidationError>
-  ) {
-    if (value) {
-      setDateFilter({ ...dateFilter, to: value });
+  function handleToDateOnChange(value: Dayjs | null) {
+    if (!value) {
+      setDateFilter({ ...dateFilter, to: null });
     }
+    setDateFilter({ ...dateFilter, to: value });
   }
 
   return (
