@@ -69,7 +69,6 @@ function ArticleDetails() {
             />
           </div>
         )}
-        {isFetching && <div>Loading...</div>}
       </div>
       {!isFetching && article && (
         <div className={styles.bottom_ctn}>
