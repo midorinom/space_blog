@@ -8,6 +8,7 @@ import {
 import Filters from "./Filters";
 import FeedCard from "./FeedCard";
 import FeedCardSkeleton from "./FeedCardSkeleton";
+import dayjs from "dayjs";
 
 function Feed() {
   const [articles, setArticles] = useState<Article[]>([]);
@@ -45,14 +46,18 @@ function Feed() {
 
   useEffect(() => {
     if (articles.length > 0) {
-      console.log(dateFilter);
-
-      const new_articles = articles.filter((article) => {
+      const newArticles = articles.filter((article) => {
         const title = article.title.toLowerCase();
-        return title.includes(searchFilter.toLowerCase());
+        const publishedDate = dayjs(article.published_at).startOf("day");
+
+        return (
+          title.includes(searchFilter.toLowerCase()) &&
+          (!dateFilter.from || publishedDate.diff(dateFilter.from) >= 0) &&
+          (!dateFilter.to || publishedDate.diff(dateFilter.to) <= 0)
+        );
       });
 
-      setFeedArticles(new_articles);
+      setFeedArticles(newArticles);
     }
   }, [searchFilter, dateFilter]);
 
