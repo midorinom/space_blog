@@ -1,12 +1,55 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../../css/ArticleDetails.module.css";
 import { Box, Button, TextField } from "@mui/material";
 import { CommentInputProps } from "../../definitions/Comment-definitions";
 
 function CommentInput({ setShowCommentInput }: CommentInputProps) {
   const [username, setUsername] = useState<string>("");
+  const [comment, setComment] = useState<string>("");
   const [usernameError, setUsernameError] = useState<string>("");
   const [commentError, setCommentError] = useState<string>("");
+
+  function handleUsernameOnChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const usernameInput = e.target.value;
+    const alphanumericRegex = /^[a-zA-Z0-9]*$/;
+
+    setUsername(usernameInput);
+
+    if (!alphanumericRegex.test(usernameInput)) {
+      setUsernameError("Please use alphanumeric characters only.");
+      return;
+    }
+    setUsernameError("");
+  }
+
+  function handleCommentOnChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const commentInput = e.target.value;
+    const alphanumericRegex = /^[a-zA-Z0-9]*$/;
+
+    setComment(commentInput);
+
+    if (!alphanumericRegex.test(commentInput)) {
+      setCommentError("Please use alphanumeric characters only.");
+      return;
+    }
+    setCommentError("");
+  }
+
+  function handlePublish(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    e.preventDefault();
+
+    if (!username) {
+      setUsernameError("Username is required.");
+    }
+
+    if (!comment) {
+      setCommentError("Comment is required.");
+    }
+
+    if (!usernameError && !commentError && username && comment) {
+      console.log("Publishing comment...");
+    }
+  }
 
   return (
     <div className={styles.comment_input_ctn}>
@@ -19,10 +62,12 @@ function CommentInput({ setShowCommentInput }: CommentInputProps) {
         autoComplete="off"
       >
         <TextField
-          error={usernameError ? true : false}
+          value={username}
+          onChange={handleUsernameOnChange}
           id={usernameError ? "outlined-error-helper-text" : "outlined-basic"}
           label="Username"
           variant="outlined"
+          error={usernameError ? true : false}
           helperText={usernameError}
           inputProps={{ maxLength: 15 }}
         />
@@ -37,12 +82,14 @@ function CommentInput({ setShowCommentInput }: CommentInputProps) {
       >
         <div>
           <TextField
-            error={commentError ? true : false}
+            value={comment}
+            onChange={handleCommentOnChange}
             id="outlined-error-multiline-static"
             label="Comment"
             multiline
             rows={4}
             inputProps={{ maxLength: 255 }}
+            error={commentError ? true : false}
             helperText={commentError}
             FormHelperTextProps={{
               className: styles.comment_input_helper_text,
@@ -59,6 +106,7 @@ function CommentInput({ setShowCommentInput }: CommentInputProps) {
           Cancel
         </Button>
         <Button
+          onClick={handlePublish}
           variant="contained"
           sx={{ backgroundColor: "black", color: "white" }}
         >
