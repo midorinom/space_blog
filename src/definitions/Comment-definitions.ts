@@ -31,3 +31,7 @@ export type FetchTopCommentersResponse = {
 export type TopCommentersCardProps = {
   commenter: TopCommenter;
 };
+
+export type FetchAverageCommentsResponse = {
+  averageCommentsPerDay: Number;
+};
