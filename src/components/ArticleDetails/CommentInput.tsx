@@ -17,7 +17,7 @@ function CommentInput({
 
   function handleUsernameOnChange(e: React.ChangeEvent<HTMLInputElement>) {
     const usernameInput = e.target.value;
-    const alphanumericRegex = /^[a-zA-Z0-9]*$/;
+    const alphanumericRegex = /^[a-zA-Z0-9 ]*$/;
 
     setUsername(usernameInput);
 
@@ -30,7 +30,7 @@ function CommentInput({
 
   function handleCommentOnChange(e: React.ChangeEvent<HTMLInputElement>) {
     const commentInput = e.target.value;
-    const alphanumericRegex = /^[a-zA-Z0-9]*$/;
+    const alphanumericRegex = /^[a-zA-Z0-9 ]*$/;
 
     setComment(commentInput);
 
