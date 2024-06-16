@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import styles from "../../css/ArticleDetails.module.css";
+import { Link } from "react-router-dom";
 import { Article } from "../../definitions/Feed-definitions";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArticleDetailsSkeleton from "./ArticleDetailsSkeleton";
@@ -34,8 +35,12 @@ function ArticleDetails() {
     <div className={styles.article_ctn}>
       <div className={styles.top_ctn}>
         <div className={styles.back_button_ctn}>
-          <ArrowBackIosIcon />
-          <div>Back</div>
+          <Link to="/" style={{ color: "inherit" }}>
+            <ArrowBackIosIcon />
+          </Link>
+          <Link to="/" style={{ color: "inherit", textDecoration: "inherit" }}>
+            <div>Back</div>
+          </Link>
         </div>
         {!isFetching && article && (
           <div className={styles.article_image_ctn}>
