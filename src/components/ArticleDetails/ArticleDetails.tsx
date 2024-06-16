@@ -53,15 +53,22 @@ function ArticleDetails() {
         )}
         {isFetching && <div>Loading...</div>}
       </div>
-      {!isFetching && (
+      {!isFetching && article && (
         <div className={styles.bottom_ctn}>
-          <div>Title</div>
-          <div>Sources</div>
-          <div>2 Comments</div>
-          <div>Username Input</div>
-          <div>Comment Input</div>
-          <div>Comment Buttons</div>
-          <div>Comments</div>
+          <div className={styles.bottom_contents}>
+            <div className={styles.headings_ctn}>
+              <div className={styles.title}>{article.title}</div>
+              <div className={styles.source_ctn}>{article.news_site}</div>
+              <div className={styles.summary_ctn}>
+                Summary: {article.summary}
+              </div>
+            </div>
+            <div className={styles.total_comments_ctn}>2 Comments</div>
+            <div>Username Input</div>
+            <div>Comment Input</div>
+            <div>Comment Buttons</div>
+            <div>Comments</div>
+          </div>
         </div>
       )}
       {isFetching && <ArticleDetailsSkeleton />}
