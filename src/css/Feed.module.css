@@ -23,7 +23,7 @@
   border-radius: 0.5rem;
 }
 
-.feed_card_image_container {
+.feed_card_image_ctn {
   height: 100%;
   min-width: 30%;
   position: relative;
@@ -37,14 +37,14 @@
   position: absolute;
 }
 
-.feed_card_info_container {
+.feed_card_info_ctn {
   flex-grow: 1;
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr;
 }
 
-.feed_card_title_container {
+.feed_card_title_ctn {
   display: flex;
   flex-direction: column;
   padding-left: 0.5rem;
