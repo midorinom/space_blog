@@ -64,10 +64,8 @@ function ArticleDetails() {
           <div className={styles.bottom_contents}>
             <div className={styles.headings_ctn}>
               <div className={styles.title}>{article.title}</div>
-              <div className={styles.source_ctn}>{article.news_site}</div>
-              <div className={styles.summary_ctn}>
-                Summary: {article.summary}
-              </div>
+              <div>{article.news_site}</div>
+              <div>Summary: {article.summary}</div>
             </div>
             <div className={styles.total_comments_ctn}>
               <div>2 Comments</div>
