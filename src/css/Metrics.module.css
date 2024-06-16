@@ -1,0 +1,39 @@
+.top_commenters_ctn {
+  grid-row-start: 2;
+  width: 95%;
+  height: 90%;
+  align-self: end;
+  padding: 0.5rem;
+  display: grid;
+  grid-template-rows: 30% 70%;
+  border-style: solid;
+  border-width: 0.1rem;
+  border-color: grey;
+  border-radius: 0.5rem;
+}
+
+.top_commenters_title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.top_commenters_cards_ctn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.top_commenters_card {
+  display: flex;
+  justify-content: space-between;
+}
+
+.average_comments {
+  grid-row-start: 2;
+  width: 95%;
+  height: 90%;
+  align-self: end;
+  justify-self: end;
+  background-color: green;
+}
