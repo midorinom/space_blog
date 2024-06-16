@@ -119,6 +119,7 @@ function ArticleDetails() {
                       label="Comment"
                       multiline
                       rows={4}
+                      inputProps={{ maxLength: 255 }}
                       helperText={commentError}
                       FormHelperTextProps={{
                         className: styles.comment_input_helper_text,
