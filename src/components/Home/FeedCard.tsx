@@ -1,4 +1,6 @@
+import { useState, useEffect } from "react";
 import styles from "../../css/Feed.module.css";
+import { getCommentsById } from "../../fetch-functions/comments-fetches";
 import { Link } from "react-router-dom";
 import { FeedCardProps } from "../../definitions/Feed-definitions";
 import CommentIcon from "@mui/icons-material/Comment";
@@ -10,7 +12,22 @@ function FeedCard({
   news_site,
   image_url,
 }: FeedCardProps) {
+  const [isFetching, setIsFetching] = useState<boolean>(false);
+  const [totalComments, setTotalComments] = useState<Number>(0);
   const dateObject = new Date(published_at);
+
+  useEffect(() => {
+    async function fetchComments() {
+      setIsFetching(true);
+
+      const fetchedComments = await getCommentsById(article_id);
+      setTotalComments(fetchedComments.length);
+
+      setIsFetching(false);
+    }
+
+    fetchComments();
+  }, []);
 
   return (
     <div className={styles.feed_card}>
@@ -39,8 +56,8 @@ function FeedCard({
           })}
         </div>
         <div className={styles.feed_card_comments}>
-          <CommentIcon />
-          <div>2</div>
+          {!isFetching && <CommentIcon />}
+          {!isFetching && <div>{totalComments.toString()}</div>}
         </div>
       </div>
     </div>
