@@ -1,7 +1,7 @@
 .home_ctn {
   height: 100vh;
   display: grid;
-  grid-template-rows: 3fr 7fr;
+  grid-template-rows: 2.5fr 7.5fr;
   align-items: center;
   justify-items: center;
 }
@@ -12,7 +12,6 @@
   display: grid;
   grid-template-rows: 3fr 7fr;
   grid-template-columns: 1fr 1fr;
-  background-color: pink;
 }
 
 .title {
@@ -46,5 +45,4 @@
   align-self: start;
   display: flex;
   flex-direction: column;
-  background-color: blue;
 }
