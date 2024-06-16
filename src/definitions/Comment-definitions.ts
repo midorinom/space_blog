@@ -18,3 +18,16 @@ export type CommentProps = {
 export type CommentCardProps = {
   comment: Comment;
 };
+
+export type TopCommenter = {
+  username: String;
+  totalComments: Number;
+};
+
+export type FetchTopCommentersResponse = {
+  topCommenters: TopCommenter[];
+};
+
+export type TopCommentersCardProps = {
+  commenter: TopCommenter;
+};

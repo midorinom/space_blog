@@ -1,10 +1,11 @@
 import styles from "../../css/Metrics.module.css";
+import { TopCommentersCardProps } from "../../definitions/Comment-definitions";
 
-function TopCommentersCard() {
+function TopCommentersCard({ commenter }: TopCommentersCardProps) {
   return (
     <div className={styles.top_commenters_card}>
-      <div>Commenter 2</div>
-      <div>x Comments</div>
+      <div>{commenter.username}</div>
+      <div>{commenter.totalComments.toString()} Comments</div>
     </div>
   );
 }

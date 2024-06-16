@@ -1,4 +1,7 @@
-import { Comment } from "../definitions/Comment-definitions";
+import {
+  Comment,
+  FetchTopCommentersResponse,
+} from "../definitions/Comment-definitions";
 
 async function getCommentsById(article_id: Number) {
   const apiUrl = process.env.REACT_APP_API_URL;
@@ -37,4 +40,36 @@ async function createComment(comment: Comment) {
   }
 }
 
-export { getCommentsById, createComment };
+async function getTopCommenters() {
+  const apiUrl = process.env.REACT_APP_API_URL;
+
+  try {
+    const res = await fetch(`${apiUrl}/comments/get-top`, {
+      method: "GET",
+      headers: { "content-type": "application/json" },
+    });
+    const response = await res.json();
+    return response;
+  } catch (err) {
+    console.error("Database Error:", err);
+    throw new Error("Failed to get top commenters.");
+  }
+}
+
+async function getAverageComments() {
+  const apiUrl = process.env.REACT_APP_API_URL;
+
+  try {
+    const res = await fetch(`${apiUrl}/comments/get-average`, {
+      method: "GET",
+      headers: { "content-type": "application/json" },
+    });
+    const response = await res.json();
+    return response;
+  } catch (err) {
+    console.error("Database Error:", err);
+    throw new Error("Failed to get top commenters.");
+  }
+}
+
+export { getCommentsById, createComment, getTopCommenters, getAverageComments };
