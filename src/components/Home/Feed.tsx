@@ -29,11 +29,8 @@ function Feed() {
         const res = await fetch(url);
         const response: FetchArticlesResponse = await res.json();
 
-        if (articles.length === 0) {
-          setArticles(response.results);
-          setFeedArticles(response.results);
-        }
-
+        setArticles(response.results);
+        setFeedArticles(response.results);
         setIsFetching(false);
       } catch (err) {
         console.error("Error when fetching all articles:", err);
