@@ -3,7 +3,7 @@ import styles from "../../css/Feed.module.css";
 function FeedCardSkeleton() {
   return (
     <div className={styles.feed_card}>
-      <p>Loading</p>
+      <p>Loading...</p>
     </div>
   );
 }
