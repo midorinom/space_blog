@@ -61,7 +61,11 @@ function CommentInput({
         article_id,
         username,
         comment,
-        date: new Date().toISOString(),
+        date: new Date().toLocaleDateString("en-GB", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+        }),
       });
 
       await fetchComments();

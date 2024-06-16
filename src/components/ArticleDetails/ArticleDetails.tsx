@@ -101,7 +101,11 @@ function ArticleDetails() {
                 fetchComments={fetchComments}
               />
             )}
-            {!isFetchingComments ? <Comments /> : <ArticleDetailsSkeleton />}
+            {!isFetchingComments && comments ? (
+              <Comments comments={comments} />
+            ) : (
+              <ArticleDetailsSkeleton />
+            )}
           </div>
         </div>
       )}

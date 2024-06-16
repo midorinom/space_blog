@@ -1,12 +1,13 @@
 import styles from "../../css/Comments.module.css";
+import { CommentProps } from "../../definitions/Comment-definitions";
 import CommentCard from "./CommentCard";
 
-function Comments() {
+function Comments({ comments }: CommentProps) {
   return (
     <div className={styles.comments_ctn}>
-      <CommentCard />
-      <CommentCard />
-      <CommentCard />
+      {comments.map((comment) => (
+        <CommentCard comment={comment} />
+      ))}
     </div>
   );
 }
