@@ -1,13 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { createComment } from "../../fetch-functions/comments-fetches";
 import styles from "../../css/ArticleDetails.module.css";
 import { Box, Button, TextField } from "@mui/material";
 import { CommentInputProps } from "../../definitions/Comment-definitions";
 
-function CommentInput({ setShowCommentInput }: CommentInputProps) {
+function CommentInput({
+  setShowCommentInput,
+  article_id,
+  fetchComments,
+}: CommentInputProps) {
   const [username, setUsername] = useState<string>("");
   const [comment, setComment] = useState<string>("");
   const [usernameError, setUsernameError] = useState<string>("");
   const [commentError, setCommentError] = useState<string>("");
+  const [isFetching, setIsFetching] = useState<boolean>(false);
 
   function handleUsernameOnChange(e: React.ChangeEvent<HTMLInputElement>) {
     const usernameInput = e.target.value;
@@ -35,7 +41,9 @@ function CommentInput({ setShowCommentInput }: CommentInputProps) {
     setCommentError("");
   }
 
-  function handlePublish(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+  async function handlePublish(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) {
     e.preventDefault();
 
     if (!username) {
@@ -46,8 +54,19 @@ function CommentInput({ setShowCommentInput }: CommentInputProps) {
       setCommentError("Comment is required.");
     }
 
-    if (!usernameError && !commentError && username && comment) {
-      console.log("Publishing comment...");
+    if (!usernameError && !commentError && username && comment && !isFetching) {
+      setIsFetching(true);
+
+      await createComment({
+        article_id,
+        username,
+        comment,
+        date: new Date().toISOString(),
+      });
+
+      await fetchComments();
+      setShowCommentInput(false);
+      setIsFetching(false);
     }
   }
 

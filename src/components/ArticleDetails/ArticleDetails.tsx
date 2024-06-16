@@ -1,19 +1,32 @@
 import { useState, useEffect } from "react";
 import styles from "../../css/ArticleDetails.module.css";
 import { Link } from "react-router-dom";
+import { getCommentsById } from "../../fetch-functions/comments-fetches";
 import { Article } from "../../definitions/Feed-definitions";
+import { Comment } from "../../definitions/Comment-definitions";
 import Comments from "./Comments";
+import CommentInput from "./CommentInput";
 import ArticleDetailsSkeleton from "./ArticleDetailsSkeleton";
 import { Button } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import CommentInput from "./CommentInput";
 
 function ArticleDetails() {
   const [article, setArticle] = useState<Article | null>(null);
   const [isFetching, setIsFetching] = useState<boolean>(false);
+  const [isFetchingComments, setIsFetchingComments] = useState<boolean>(false);
   const [showCommentInput, setShowCommentInput] = useState<boolean>(false);
+  const [comments, setComments] = useState<Comment[]>([]);
   const current_url = window.location.href;
   const articleId = current_url.split("/").pop();
+
+  async function fetchComments() {
+    setIsFetchingComments(true);
+
+    const fetchedComments = await getCommentsById(Number(articleId));
+    setComments(fetchedComments);
+
+    setIsFetchingComments(false);
+  }
 
   useEffect(() => {
     async function fetchArticles() {
@@ -33,6 +46,7 @@ function ArticleDetails() {
     }
 
     fetchArticles();
+    fetchComments();
   }, []);
 
   return (
@@ -65,23 +79,29 @@ function ArticleDetails() {
               <div>{article.news_site}</div>
               <div>Summary: {article.summary}</div>
             </div>
-            <div className={styles.total_comments_ctn}>
-              <div>2 Comments</div>
-              {!showCommentInput && (
-                <div className={styles.post_comment_ctn}>
-                  <Button
-                    variant="contained"
-                    onClick={() => setShowCommentInput(true)}
-                  >
-                    Post Comment
-                  </Button>
-                </div>
-              )}
-            </div>
-            {showCommentInput && (
-              <CommentInput setShowCommentInput={setShowCommentInput} />
+            {!isFetchingComments && (
+              <div className={styles.total_comments_ctn}>
+                <div>{comments.length} Comments</div>
+                {!showCommentInput && (
+                  <div className={styles.post_comment_ctn}>
+                    <Button
+                      variant="contained"
+                      onClick={() => setShowCommentInput(true)}
+                    >
+                      Post Comment
+                    </Button>
+                  </div>
+                )}
+              </div>
             )}
-            <Comments />
+            {showCommentInput && (
+              <CommentInput
+                setShowCommentInput={setShowCommentInput}
+                article_id={Number(articleId)}
+                fetchComments={fetchComments}
+              />
+            )}
+            {!isFetchingComments ? <Comments /> : <ArticleDetailsSkeleton />}
           </div>
         </div>
       )}
