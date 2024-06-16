@@ -14,7 +14,10 @@ function FeedCard({
 
   return (
     <div className={styles.feed_card}>
-      <Link to="/article-details" className={styles.feed_card_image_container}>
+      <Link
+        to={`article-details/${article_id}`}
+        className={styles.feed_card_image_container}
+      >
         <img src={image_url} alt={title} className={styles.feed_card_image} />
       </Link>
       <div className={styles.feed_card_info_container}>
