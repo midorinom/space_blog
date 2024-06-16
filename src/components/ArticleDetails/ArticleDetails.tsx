@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import styles from "../../css/ArticleDetails.module.css";
 import { Link } from "react-router-dom";
 import { Article } from "../../definitions/Feed-definitions";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import Comments from "./Comments";
 import ArticleDetailsSkeleton from "./ArticleDetailsSkeleton";
 import { Box, Button, TextField } from "@mui/material";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 function ArticleDetails() {
   const [article, setArticle] = useState<Article | null>(null);
@@ -144,7 +145,7 @@ function ArticleDetails() {
                 </div>
               </div>
             )}
-            <div>Comments</div>
+            <Comments />
           </div>
         </div>
       )}
