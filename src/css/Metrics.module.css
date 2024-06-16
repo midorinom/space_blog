@@ -35,5 +35,33 @@
   height: 90%;
   align-self: end;
   justify-self: end;
+  padding: 0.5rem;
+  display: grid;
+  grid-template-rows: 30% 70%;
+  border-style: solid;
+  border-width: 0.1rem;
+  border-color: grey;
+  border-radius: 0.5rem;
   background-color: green;
+}
+
+.average_comments_title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.average_comments_display {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  align-self: end;
+  justify-self: end;
+  align-items: end;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+
+.average_comments_number {
+  font-size: 4rem;
+  font-weight: bold;
 }
