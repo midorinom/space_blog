@@ -11,5 +11,5 @@
 ### .env File
 Make sure that ```REACT_APP_API_URL="http://localhost:5001/api"``` is inside the .env file. Otherwise, create a .env file with it.
 
-### Technologies Used
+# Technologies Used
 - React, Typescript, MaterialUI, react-router-dom, dayjs, dotenv
