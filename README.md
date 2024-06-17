@@ -6,7 +6,7 @@
 - If the backend server is running, the web app is now functional.
 
 # Technologies Used
-- React, Typescript, MaterialUI, dayjs, dotenv
+- React, Typescript, MaterialUI, react-router-dom, dayjs, dotenv
 
 # .env File
 Make sure that ```REACT_APP_API_URL="http://localhost:5001/api"``` is inside the .env file. Otherwise, create a .env file with it.
