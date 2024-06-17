@@ -41,6 +41,7 @@
 
 .bottom_contents {
   width: fit-content;
+  max-width: 60vw;
   display: flex;
   flex-direction: column;
   gap: 1rem;
