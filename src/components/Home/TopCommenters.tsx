@@ -29,7 +29,7 @@ function TopCommenters() {
     <div className={styles.top_commenters_ctn}>
       <div className={styles.top_commenters_title}>Top 3 Commenters</div>
       <div className={styles.top_commenters_cards_ctn}>
-        {isFetching ? (
+        {isFetching && topCommenters ? (
           <div>Loading...</div>
         ) : (
           topCommenters.map((commenter) => (

@@ -24,7 +24,7 @@ function AverageComments() {
   return (
     <div className={styles.average_comments}>
       <div className={styles.average_comments_title}>Average Comments/Day</div>
-      {!isFetching && (
+      {!isFetching && averageComments && (
         <div className={styles.average_comments_display}>
           <div className={styles.average_comments_number}>
             {averageComments.toString()}
